@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://www.hibernate.org/dtd/hibernate-mapping">
+
+<hibernate-mapping>
+	<class name="pvt.stockandsalemanager.beans.SupplierDetails"
+		table="supplier_details">
+		<id name="supplierId" column="supplier_id" type="java.lang.Integer"
+			length="10">
+		</id>
+
+		<property name="supplierName" column="supplier_name"
+			type="java.lang.String" length="50" update="true" insert="true"
+			not-null="true" />
+
+		<property name="supplierAddress" column="supplier_address"
+			type="java.lang.String" length="50" update="true" insert="true" />
+
+		<property name="supplierCity" column="supplier_city"
+			type="java.lang.String" length="20" update="true" insert="true" />
+
+		<property name="supplierState" column="supplier_state"
+			type="java.lang.String" length="20" update="true" insert="true" />
+
+		<!-- Foreign Key from Supplier Details -->
+		<property name="supplierZipCode" column="supplier_zip_code"
+			type="java.lang.Integer" length="10" update="true" insert="true" />
+
+	</class>
+</hibernate-mapping>  

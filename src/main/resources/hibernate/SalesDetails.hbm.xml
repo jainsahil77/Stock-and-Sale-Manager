@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://www.hibernate.org/dtd/hibernate-mapping">
+
+<hibernate-mapping>
+	<class name="pvt.stockandsalemanager.beans.SalesDetails"
+		table="sales_details">
+
+		<id name="salesId" type="long" column="sales_id">
+			<generator class="increment" />
+		</id>
+
+		<!-- <composite-id> <key-property name="purchaseId" column="purchase_id" 
+			type="java.lang.Integer" length="20" /> <key-property name="itemId" column="item_id" 
+			type="java.lang.String" length="10" /> </composite-id> -->
+		<!-- <many-to-one name="purchaseId" class="pvt.stockandsalemanager.beans.PaymentDetails" 
+			column="purchase_id" unique="true" not-null="true" cascade="all" insert="false" 
+			update="false" /> <many-to-one name="itemId" class="pvt.stockandsalemanager.beans.ItemDetails" 
+			column="item_id" unique="true" not-null="true" cascade="all" insert="false" 
+			update="false" /> -->
+
+		<property name="purchaseId" column="purchase_id"
+			type="java.lang.Integer" length="20" update="true" insert="true"
+			not-null="true" />
+
+		<property name="itemId" column="item_id"
+			type="java.lang.String" length="10" update="true" insert="true"
+			not-null="true" />
+
+		<!-- Foreign Key from Supplier Details -->
+		<property name="quantity" column="quantity"
+			type="java.lang.Float" update="true" insert="true" precision="2"
+			not-null="true" />
+
+		<property name="sellingPrice" column="selling_price"
+			type="java.lang.Float" update="true" insert="true" precision="2"
+			not-null="true" />
+
+		<property name="totalAmount" column="total_amount"
+			type="java.lang.Float" update="true" insert="true" precision="2"
+			not-null="true" />
+
+		<property name="discountAppliedPercentage"
+			column="discount_applied_percentage" type="java.lang.Float"
+			update="true" insert="true" not-null="true" precision="2" />
+
+		<property name="couponCodeUsed" column="coupon_code_used"
+			type="java.lang.String" length="20" update="true" insert="true"
+			not-null="false" />
+	</class>
+</hibernate-mapping>  

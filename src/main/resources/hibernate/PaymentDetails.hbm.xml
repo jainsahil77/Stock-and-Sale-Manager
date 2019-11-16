@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://www.hibernate.org/dtd/hibernate-mapping">
+
+<hibernate-mapping>
+	<class name="pvt.stockandsalemanager.beans.PaymentDetails"
+		table="payment_details">
+		<id name="purchaseId" column="purchase_id" type="java.lang.Integer"
+			length="20">
+		</id>
+
+		<property name="paymentMode" column="payment_mode"
+			type="java.lang.String" length="20" update="true" insert="true"
+			not-null="true" />
+
+		<property name="remarks" column="remarks"
+			type="java.lang.String" length="100" update="true" insert="true" />
+
+		<property name="amountPayed" column="amount_payed"
+			type="java.lang.Float" update="true" insert="true" precision="2"
+			not-null="true" />
+
+	</class>
+</hibernate-mapping>  

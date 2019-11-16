@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://www.hibernate.org/dtd/hibernate-mapping">
+
+<hibernate-mapping>
+	<class name="pvt.stockandsalemanager.beans.ItemDetails"
+		table="item_details">
+		<id name="itemId" column="item_id" type="java.lang.String"
+			length="10">
+		</id>
+
+		<property name="itemName" column="item_name"
+			type="java.lang.String" length="50" update="true" insert="true"
+			not-null="true" />
+
+		<property name="itemPurchasePrice"
+			column="item_purchase_price" type="java.lang.Float" update="true"
+			insert="true" precision="2" not-null="true" />
+
+		<!-- Foreign Key from Supplier Details -->
+		<property name="itemSupplierId" column="item_supplier_id"
+			type="java.lang.Integer" length="10" update="true" insert="true"
+			not-null="true" />
+
+		<property name="itemMRP" column="item_mrp"
+			type="java.lang.Float" update="true" insert="true" precision="2"
+			not-null="true" />
+
+		<property name="availableStock" column="available_stock"
+			type="java.lang.Float" update="true" insert="true" precision="2"
+			not-null="true" />
+
+		<property name="itemMeasuringUnit"
+			column="item_measuring_unit" type="java.lang.String" length="20"
+			update="true" insert="true" not-null="true" />
+
+	</class>
+</hibernate-mapping>  
