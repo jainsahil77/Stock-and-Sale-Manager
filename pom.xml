@@ -20,6 +20,7 @@
 		<hibernate.core.version>6.0.0.Alpha2</hibernate.core.version>
 		<junit.version>4.13-rc-1</junit.version>
 		<maven.compiler.release>9</maven.compiler.release>
+		<spirng.version>5.2.1.RELEASE</spirng.version>
 	</properties>
 
 	<build>
@@ -57,28 +58,46 @@
 	</build>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<!-- Spring Dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spirng.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spirng.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spirng.version}</version>
+		</dependency>
+
+
+		<!-- JUNIT -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
+		<!-- HSQL Database -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>${hsql.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<!-- Hibernate Dependency -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.core.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<!-- Apache common lang dependency -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -86,7 +105,6 @@
 		</dependency>
 
 		<!-- Logger Dependencies -->
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>

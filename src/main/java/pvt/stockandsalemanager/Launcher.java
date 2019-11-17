@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import pvt.stockandsalemanager.hibernate.HibernateConnection;
+import pvt.stockandsalemanager.utils.Configurations;
+import pvt.stockandsalemanager.utils.Constants;
 
 /**
  *
@@ -18,8 +20,8 @@ public class Launcher {
 
 	public static void main(String[] args) {
 		try {
-			fixedThreadPoolExecutorService = Executors.newFixedThreadPool(10);
 			if (initialize()) {
+				fixedThreadPoolExecutorService = Executors.newFixedThreadPool(Configurations.getThreadPoolSize());
 				// TODO Launch service
 				LOGGER.info("Enter 0 for exiting");
 				try (Scanner scannerObj = new Scanner(System.in)) {
@@ -46,8 +48,8 @@ public class Launcher {
 	private static boolean initialize() {
 		boolean isConnectionEstablished = HibernateConnection.openDatabaseConnection();
 		LOGGER.info("Established Database Connection");
-		// TODO Initialized configurations
-		boolean isConfigurationsInitialized = true;
+		boolean isConfigurationsInitialized = Configurations.initializeConfigurations();
+		LOGGER.info("Configurations Initialized");
 		return isConnectionEstablished && isConfigurationsInitialized;
 	}
 
@@ -55,9 +57,10 @@ public class Launcher {
 		fixedThreadPoolExecutorService.shutdown();
 		int waitTime = 0;
 		LOGGER.info("Shuting down threads");
-		while (!fixedThreadPoolExecutorService.isShutdown() && waitTime < 10) {
+		while (!fixedThreadPoolExecutorService.isShutdown()
+				&& waitTime < Configurations.getWaitTimeOutForThreadsShutDown()) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(Constants.INT_1000);
 				waitTime++;
 			} catch (InterruptedException e) {
 				LOGGER.error("Wait thread interrupted. Caught.", e);
