@@ -1,5 +1,7 @@
 package pvt.stockandsalemanager.beans;
 
+import java.util.Objects;
+
 import pvt.stockandsalemanager.utils.GenericEnums.StockMeasurementUnit;
 
 /**
@@ -16,6 +18,50 @@ public class ItemDetails implements java.io.Serializable {
 	private float itemMRP;
 	private float availableStock;
 	private StockMeasurementUnit itemMeasuringUnit;
+
+	public ItemDetails() {
+		// Constructor for Hibernate
+	}
+
+	/**
+	 * @param itemName
+	 * @param itemPurchasePrice
+	 * @param itemSupplierId
+	 * @param itemMRP
+	 * @param availableStock
+	 * @param itemMeasuringUnit
+	 */
+	public ItemDetails(String itemName, float itemPurchasePrice, int itemSupplierId, float itemMRP,
+			float availableStock, StockMeasurementUnit itemMeasuringUnit) {
+		this.itemName = itemName;
+		this.itemPurchasePrice = itemPurchasePrice;
+		this.itemSupplierId = itemSupplierId;
+		this.itemMRP = itemMRP;
+		this.availableStock = availableStock;
+		this.itemMeasuringUnit = itemMeasuringUnit;
+		this.itemId = String.valueOf(this.hashCode());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.itemName, this.itemSupplierId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof ItemDetails)) {
+			return false;
+		}
+		ItemDetails other = (ItemDetails) obj;
+		return Objects.equals(itemId, other.itemId) && Objects.equals(itemName, other.itemName)
+				&& itemSupplierId == other.itemSupplierId;
+	}
 
 	@Override
 	public String toString() {

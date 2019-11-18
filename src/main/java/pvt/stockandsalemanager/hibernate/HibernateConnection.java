@@ -1,8 +1,6 @@
 package pvt.stockandsalemanager.hibernate;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Objects;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.jdbc.Work;
 
 /**
  * @author Sahil Jain
@@ -23,26 +20,16 @@ public class HibernateConnection {
 		// Added a private constructor to hide the implicit public one.
 	}
 
-	private static Session session;
-	private static Connection connection;
+	private static SessionFactory sessionFactory;
 
 	public static boolean openDatabaseConnection() {
 		boolean isConnectionEstablished = false;
-		if (!checkDatabaseConnection()) {
+		if (!checkSessionFactoryStatus()) {
 			try {
 				File hibernateConfigFile = new File("src/main/resources/hibernate/hibernate.cfg.xml");
-				SessionFactory sessionFactory = new Configuration().configure(hibernateConfigFile)
-						.buildSessionFactory();
-				session = sessionFactory.openSession();
-				LOGGER.info("Session Opened");
-				session.doWork(new Work() {
-					@Override
-					public void execute(Connection connection) throws SQLException {
-						// TODO do your work using connection
-						HibernateConnection.connection = connection;
-					}
-				});
-
+				sessionFactory = new Configuration().configure(hibernateConfigFile).buildSessionFactory();
+				// session = sessionFactory.openSession();
+				LOGGER.info("Session Factory Opened");
 				LOGGER.info("Hibernate Database Connected");
 				isConnectionEstablished = true;
 			} catch (Exception ex) {
@@ -54,26 +41,22 @@ public class HibernateConnection {
 		return isConnectionEstablished;
 	}
 
-	public static boolean checkDatabaseConnection() {
-		return !Objects.isNull(session) && session.isOpen() && session.isConnected();
+	public static boolean checkSessionFactoryStatus() {
+		return !Objects.isNull(sessionFactory) && sessionFactory.isOpen();
 	}
 
-	public static Connection getConnection() {
-		if (!checkDatabaseConnection()) {
+	public static Session getSession() {
+		if (!checkSessionFactoryStatus()) {
 			LOGGER.info("Hibernate Database Connection is not open. Connecting...");
 			openDatabaseConnection();
-		} else {
-			LOGGER.info("Hibernate Database Connection is already open");
 		}
-		return connection;
+		return sessionFactory.openSession();
 	}
 
 	public static void closeDatabaseConnection() {
-		if (checkDatabaseConnection()) {
-			session.disconnect();
+		if (checkSessionFactoryStatus()) {
+			sessionFactory.close();
 			LOGGER.info("Hibernate Database Disconnected");
-			session.close();
-			LOGGER.info("Hibernate Database Connection Closed");
 		} else {
 			LOGGER.info("Hibernate Database Connection is already closed");
 		}
