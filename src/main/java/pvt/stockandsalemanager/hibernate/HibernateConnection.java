@@ -28,7 +28,6 @@ public class HibernateConnection {
 			try {
 				File hibernateConfigFile = new File("src/main/resources/hibernate/hibernate.cfg.xml");
 				sessionFactory = new Configuration().configure(hibernateConfigFile).buildSessionFactory();
-				// session = sessionFactory.openSession();
 				LOGGER.info("Session Factory Opened");
 				LOGGER.info("Hibernate Database Connected");
 				isConnectionEstablished = true;
@@ -51,6 +50,12 @@ public class HibernateConnection {
 			openDatabaseConnection();
 		}
 		return sessionFactory.openSession();
+	}
+
+	public static void closeSession(Session session) {
+		if (session != null) {
+			session.close();
+		}
 	}
 
 	public static void closeDatabaseConnection() {

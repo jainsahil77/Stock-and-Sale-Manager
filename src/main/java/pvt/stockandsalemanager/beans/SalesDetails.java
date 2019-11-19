@@ -10,7 +10,7 @@ package pvt.stockandsalemanager.beans;
 public class SalesDetails implements java.io.Serializable {
 	private static final long serialVersionUID = 7744354212280282290L;
 	// Composite Primary Key (purchaseId and itemId)
-	private int purchaseId; // Foreign Key from PaymentDetails
+	private long purchaseId; // Foreign Key from PaymentDetails
 	private String itemId; // Foreign Key from Item Details
 	private float quantity;
 	private float sellingPrice;
@@ -59,14 +59,14 @@ public class SalesDetails implements java.io.Serializable {
 	/**
 	 * @return the purchaseId
 	 */
-	public int getPurchaseId() {
+	public long getPurchaseId() {
 		return purchaseId;
 	}
 
 	/**
 	 * @param purchaseId the purchaseId to set
 	 */
-	public void setPurchaseId(int purchaseId) {
+	public void setPurchaseId(long purchaseId) {
 		this.purchaseId = purchaseId;
 	}
 
