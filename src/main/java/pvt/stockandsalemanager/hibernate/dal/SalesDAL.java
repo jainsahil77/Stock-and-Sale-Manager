@@ -24,32 +24,6 @@ import pvt.stockandsalemanager.hibernate.HibernateConnection;
 public class SalesDAL {
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	public static boolean updateAvailableStockInItemDetails(String itemId, int quantity) {
-		boolean isSuccess = false;
-		Session session = HibernateConnection.getSession();
-		LOGGER.info("Got session. Creating transaction for item details");
-		Transaction transaction = session.beginTransaction();
-		LOGGER.info("Transaction created");
-		try {
-
-			ItemDetails itemDetails = (ItemDetails) session.createQuery("FROM item_details wheree item_id=?")
-					.setParameter(0, itemId).list().get(0);
-			itemDetails.setAvailableStock(itemDetails.getAvailableStock() - quantity);
-			session.saveOrUpdate(itemDetails);
-			LOGGER.info("Committing item details");
-			transaction.commit();
-			LOGGER.info("Commit successfull", itemDetails.toString());
-			isSuccess = true;
-		} catch (Exception ex) {
-			transaction.rollback();
-			LOGGER.error("Error encontered. Rolledback data.", ex);
-		} finally {
-			HibernateConnection.closeSession(session);
-		}
-		LOGGER.info("Insert Item Details status: ", isSuccess);
-		return isSuccess;
-	}
-
 	@SuppressWarnings("unchecked")
 	public static List<ItemDetails> getItemDetailsRecords() {
 		List<ItemDetails> itemDetailsList = new LinkedList<>();
