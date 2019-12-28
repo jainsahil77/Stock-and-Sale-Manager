@@ -22,6 +22,11 @@ import pvt.stockandsalemanager.hibernate.HibernateConnection;
  *
  */
 public class SalesDAL {
+
+	private SalesDAL() {
+		// Adding a private constructor to hide the implicit public one.
+	}
+
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	@SuppressWarnings("unchecked")

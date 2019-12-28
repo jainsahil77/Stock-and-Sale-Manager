@@ -10,6 +10,11 @@ import pvt.stockandsalemanager.beans.SupplierDetails;
 import pvt.stockandsalemanager.hibernate.HibernateConnection;
 
 public class StockDAL {
+
+	private StockDAL() {
+		// Adding a private constructor to hide the implicit public one.
+	}
+
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public static boolean addItemDetails(ItemDetails itemDetails) {

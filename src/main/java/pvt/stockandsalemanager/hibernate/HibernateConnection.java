@@ -26,7 +26,7 @@ public class HibernateConnection {
 		boolean isConnectionEstablished = false;
 		if (!checkSessionFactoryStatus()) {
 			try {
-				File hibernateConfigFile = new File("src/main/resources/hibernate/hibernate.cfg.xml");
+				File hibernateConfigFile = new File("resources/hibernate/hibernate.cfg.xml");
 				sessionFactory = new Configuration().configure(hibernateConfigFile).buildSessionFactory();
 				LOGGER.info("Session Factory Opened");
 				LOGGER.info("Hibernate Database Connected");

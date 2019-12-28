@@ -6,14 +6,14 @@ import java.util.concurrent.Executors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import pvt.stockandsalemanager.hibernate.HibernateConnection;
 import pvt.stockandsalemanager.utils.Configurations;
 import pvt.stockandsalemanager.utils.Constants;
 
-/**
- *
- */
+@SpringBootApplication
 public class Launcher {
 	public static final Logger LOGGER = LogManager.getLogger();
 	private static ExecutorService fixedThreadPoolExecutorService;
@@ -21,6 +21,7 @@ public class Launcher {
 	public static void main(String[] args) {
 		try {
 			if (initialize()) {
+				SpringApplication.run(Launcher.class, args);
 				fixedThreadPoolExecutorService = Executors.newFixedThreadPool(Configurations.getThreadPoolSize());
 				// TODO Launch service
 				LOGGER.info("Enter 0 for exiting");

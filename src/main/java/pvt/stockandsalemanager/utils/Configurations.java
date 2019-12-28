@@ -55,7 +55,7 @@ public class Configurations {
 	public static boolean initializeConfigurations() {
 		boolean isConfigLoaded = false;
 		try (AbstractApplicationContext abstractApplicationContext = new FileSystemXmlApplicationContext(
-				"src/main/resources/configurations/Configurations.xml")) {
+				"resources/configurations/Configurations.xml")) {
 			abstractApplicationContext.getBean("Configurations");
 			isConfigLoaded = true;
 		} catch (Exception ex) {

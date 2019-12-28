@@ -30,7 +30,6 @@
 		<property name="show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
 
-		<!-- Mapping files src/main/resources/hibernate/ -->
 		<mapping resource="ItemDetails.hbm.xml"></mapping>
 		<mapping resource="PaymentDetails.hbm.xml"></mapping>
 		<mapping resource="SupplierDetails.hbm.xml"></mapping>
