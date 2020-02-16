@@ -65,7 +65,7 @@ public class StockDAL {
 		LOGGER.info("Got session. Creating transaction for item details");
 		Transaction transaction = session.beginTransaction();
 		try {
-			ItemDetails itemDetails = (ItemDetails) session.createQuery("FROM item_details where item_id=?")
+			ItemDetails itemDetails = (ItemDetails) session.createQuery("FROM ItemDetails where itemId=?")
 					.setParameter(0, itemId).list().get(0);
 			itemDetails.setAvailableStock(itemDetails.getAvailableStock() - quantity);
 			session.saveOrUpdate(itemDetails);

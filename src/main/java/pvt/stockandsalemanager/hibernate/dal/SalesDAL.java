@@ -36,7 +36,7 @@ public class SalesDAL {
 		try {
 			LOGGER.info("Got session. Fetching Item Details");
 			session.beginTransaction();
-			itemDetailsList = session.createQuery("FROM item_details order by item_name").list();
+			itemDetailsList = session.createQuery("FROM ItemDetails order by itemName").list();
 		} catch (Exception ex) {
 			LOGGER.error("Error encontered. Nothing to rollback.", ex);
 		} finally {
@@ -52,8 +52,8 @@ public class SalesDAL {
 		try {
 			LOGGER.info("Got session. Searching item by name");
 			session.beginTransaction();
-			itemDetailsList = session.createQuery("FROM item_details where item_name like %?%")
-					.setParameter(0, itemName).list();
+			itemDetailsList = session.createQuery("FROM ItemDetails where itemName like %?%").setParameter(0, itemName)
+					.list();
 		} catch (Exception ex) {
 			LOGGER.error("Error encontered. Nothing to rollback.", ex);
 		} finally {

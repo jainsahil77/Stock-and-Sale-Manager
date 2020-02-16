@@ -16,7 +16,7 @@ public class SalesDetails implements java.io.Serializable {
 	private float sellingPrice;
 	private float totalAmount;
 	private float discountAppliedPercentage;
-	private float salesId;
+	private long salesId;
 	private String couponCodeUsed;
 
 	@Override
@@ -45,14 +45,14 @@ public class SalesDetails implements java.io.Serializable {
 	/**
 	 * @return the salesId
 	 */
-	public float getSalesId() {
+	public long getSalesId() {
 		return salesId;
 	}
 
 	/**
 	 * @param salesId the salesId to set
 	 */
-	public void setSalesId(float salesId) {
+	public void setSalesId(long salesId) {
 		this.salesId = salesId;
 	}
 

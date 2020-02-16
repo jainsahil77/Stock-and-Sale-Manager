@@ -23,7 +23,6 @@ public class Launcher {
 			if (initialize()) {
 				SpringApplication.run(Launcher.class, args);
 				fixedThreadPoolExecutorService = Executors.newFixedThreadPool(Configurations.getThreadPoolSize());
-				// TODO Launch service
 				LOGGER.info("Enter 0 for exiting");
 				try (Scanner scannerObj = new Scanner(System.in)) {
 					String input = "";
