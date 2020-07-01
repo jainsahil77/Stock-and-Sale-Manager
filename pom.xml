@@ -14,7 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>9</java.version>
-		<logger.version>2.12.1</logger.version>
+		<logger.version>2.13.3</logger.version>
 		<apache.commons.lang3>3.9</apache.commons.lang3>
 		<hsql.version>2.5.0</hsql.version>
 		<hibernate.core.version>6.0.0.Alpha2</hibernate.core.version>
