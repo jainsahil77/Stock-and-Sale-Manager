@@ -21,7 +21,7 @@
 		<junit.version>4.13-rc-1</junit.version>
 		<maven.compiler.release>9</maven.compiler.release>
 		<spirng.version>5.2.1.RELEASE</spirng.version>
-		<spirng.boot.version>2.2.2.RELEASE</spirng.boot.version>
+		<spirng.boot.version>2.5.12</spirng.boot.version>
 	</properties>
 
 	<build>
